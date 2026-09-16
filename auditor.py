@@ -40,6 +40,5 @@ while True:
 
         break
 
-
 print("Total Units Processed:", inventory)
 print("Failed/Rejected Entries:", failed_entries)
