@@ -2,19 +2,13 @@ inventory = 0
 
 failed_entries = 0
 
-
-
 while True:
 
     quantity = input("Enter stock quantity: ")
 
-
-
     if quantity == "quit":
 
         break
-
-
 
     if not quantity.isdigit():
 
@@ -24,15 +18,9 @@ while True:
 
         continue
 
-
-
     quantity = int(quantity)
 
-
-
     inventory += quantity
-
-
 
     if inventory > 500:
 
