@@ -1,7 +1,7 @@
 import json
 from pathlib import Path
 
-from product import Product 
+from product import PhysicalProduct, DigitalProduct
 from inventory import Inventory 
 
 DATA_FILE = Path(__file__).with_name("inventory.json")
@@ -56,7 +56,31 @@ def load_inventory(inventory):
                 ):
                     raise ValueError("Invalid product information.")
 
-                product = Product(product_id, name, price, stock)
+                product_type = item["type"]
+
+                if product_type == "physical":
+                    weight = float(item[weight])
+
+                    if weight < 0:
+                        raise ValueError("Invalid weight.")
+
+                    product = PhysicalProduct(
+                        product_id, name, price, stock, weight
+                    )
+
+                elif product_type == "digital":
+                    download_size = float(item["download_size"])
+
+                    if download_size < 0:
+                        raise ValueError("Invalid download size.")
+
+                    product = DigitalProduct(
+                        product_id, name, price, stock, download_size
+                    )
+
+                else:
+                    raise ValueError("Unknown product type.")
+
                 inventory.add_product(product)
 
             except (KeyError, TypeError, ValueError):
@@ -117,7 +141,26 @@ def add_product_menu(inventory):
     price = get_non_negative_float("Enter product price: $")
     stock = get_non_negative_int("Enter stock quantity: ")
 
-    product = Product(product_id,name, price, stock)
+    print("\nSelect Product Type:")
+    print("1. Physical Product")
+    print("2. Digital Product")
+
+    while True: 
+        product_type = input("Enter product type (1-2): ").strip()
+
+        if product_type == "1":
+            weight = get_non_negative_float("Enter product weight (kg): ")
+            product = PhysicalProduct(product_id, name, price, stock, weight)
+            break
+
+        elif product_type == "2":
+            download_size = get_non_negative_float("Enter download size (MB): ")
+            product = DigitalProduct(product_id, name, price, stock, download_size)
+            break
+
+        else:
+            print("Invalid choice. Please enter 1 or 2.")
+
     inventory.add_product(product)
 
 def update_stock_menu(inventory):
