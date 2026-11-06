@@ -6,5 +6,11 @@
         "stock": 100,
         "type": "digital",
         "download_size": 500.0
+    },
+    {
+        "product_id": "P100",
+        "name": "Laptop",
+        "price": 1200.0,
+        "stock": 15
     }
 ]
