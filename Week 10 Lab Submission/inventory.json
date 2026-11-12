@@ -1,0 +1,28 @@
+[
+    {
+        "product_id": "D100",
+        "name": "Python Course",
+        "price": 50.0,
+        "stock": 150,
+        "supplier": {
+            "supplier_id": "S001",
+            "name": "Online Learning Supplier",
+            "contact_email": "learning@example.com"
+        },
+        "type": "digital",
+        "download_size": 500.0
+    },
+    {
+        "product_id": "P100",
+        "name": "Laptop",
+        "price": 1200.0,
+        "stock": 15,
+        "supplier": {
+            "supplier_id": "S002",
+            "name": "Computer Supplier",
+            "contact_email": "computers@email.com"
+        },
+        "type": "physical",
+        "weight": 2.5
+    }
+]
